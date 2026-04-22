@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Control CNC</title>
+  <link rel="shortcut icon" href="imagenes/Logo_sanjo.png">
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      background-color: rgb(238, 238, 238);
+    }
+    header{
+      position: relative;
+      background-color: rgb(129, 129, 129);
+      height: 70px;
+      top: 0px;
+      color: white;
+
+    }
+    #estado{
+      position: absolute;
+      top: 5px;
+      left: 180px;
+      padding: 10px;
+      margin: 5px;
+      width: auto;
+   
+    }
+    #respuesta{
+      position: absolute;
+      top: 10px;
+      left: 360px;
+      padding: 10px;
+      margin: 5px;
+      width: auto;
+    }
+    button {
+      padding: 10px;
+      margin: 5px;
+      width: 60px;
+      position: absolute;
+      background-color: rgb(0, 132, 255);
+      border-radius: 8px;
+      box-shadow: 3px 3px 10px rgb(121, 121, 121);
+      color: azure;
+    }
+    
+
+    /*----------------- Boton XPlus -------------------------------- */
+    #btnXPlus{
+        top: 130px;
+        left: 40px;
+    }
+    #btnXPlus:hover{top: 133px; left: 43px;   box-shadow: none;}
+
+    /*----------------- Boton XMinus -------------------------------- */
+    #btnXMinus{
+        top: 130px;
+        left: 160px;
+    }
+    #btnXMinus:hover{top: 133px; left: 163px;   box-shadow: none;}
+
+
+    /*----------------- Boton YPlus -------------------------------- */
+    #btnYPlus{
+        top: 70px;
+        left: 100px;
+    }
+    #btnYPlus:hover{top: 73px; left: 103px;   box-shadow: none;}
+
+    /*----------------- Boton YMinus -------------------------------- */
+    #btnYMinus{
+        top: 190px;
+        left: 100px;
+    }
+    #btnYMinus:hover{top: 193px; left: 103px;   box-shadow: none;}
+
+
+    /*----------------- Boton ZPlus -------------------------------- */
+    #btnZPlus{
+        top: 70px;
+        left: 400px;
+    }
+    #btnZPlus:hover{top: 73px; left: 403px;   box-shadow: none;}
+
+    /*----------------- Boton ZMinus -------------------------------- */
+    #btnZMinus{
+        top: 190px;
+        left: 400px;
+    }
+    #btnZMinus:hover{top: 193px; left: 403px;   box-shadow: none;}
+
+
+    /*----------------- Boton Connect -------------------------------- */
+    #btnConnect{
+        top: 10px;
+        left: 10px;
+        width: 150px;
+        
+        
+    }
+    #btnConnect:hover{top: 13px; left: 13px;   box-shadow: none;}
+
+    /*----------------- Espacio Simulador -------------------------------- */
+    #Simulador{
+      position: absolute;
+      width: 912px;
+      height: 350px;
+      border: 5px solid rgb(255, 0, 0);
+      margin: 0px auto auto 40%;
+    
+    
+      
+    }
+
+    #Movements{
+      position: absolute;
+      top: 0px;
+      left: 40px;
+    }
+    #BoxMovements{
+      position: relative;
+      height: 642px;
+      width: 605px;
+      top: 0px;
+      left: 0px;
+      border: 5px solid rgb(0, 0, 255);
+    }
+    #MovementsZone{
+      position: relative;
+      height: 294px;
+      width: 599px;
+      background-color: rgb(129, 129, 129);
+      margin: 3px 3px 3px 3px;
+      border-radius: 3px;
+      
+    }
+
+  </style>
+  
+</head>
+<body>
+  <header>  
+    <h2 id="estado">Desconectado</h2>
+    <p id="respuesta">Respuesta: ---</p>
+
+    <button id="btnConnect">Conectar CNC</button>
+  </header>
+  <div class="box" id="Simulador">
+  </div>
+
+  <div id="BoxMovements">
+    <div id="MovementsZone"></div>
+      <h1 id="Movements">Movements</h1>
+      <button id="btnXPlus">Mover X +</button>
+      <button id="btnXMinus">Mover X -</button>
+      <button id="btnYPlus">Mover Y +</button>
+      <button id="btnYMinus">Mover Y -</button>
+      <button id="btnZPlus">Mover Z +</button>
+      <button id="btnZMinus">Mover Z -</button>
+    </div> 
+  </div>
+  <!-- Link al JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
