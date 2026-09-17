@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Control CNC</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="imagenes/Logo_sanjo.png">
+
+</head>
+
+<body>
+
+  <header>
+    <div id="estadoBox">
+      <div id="estadoLed"></div>
+
+    </div>
+    <p id="respuesta"></p>
+
+    <button id="btnConnect">Conectar CNC</button>
+    <button id="btnConfig">Config</button>
+    <button id="btnUpload">Cargar GCODE</button>
+    <span id="fileName">Sin archivo</span>
+
+    <input type="file" id="fileInput" accept=".gcode,.nc,.txt" hidden>
+  </header>
+
+  <div id="Simulador">
+
+    <section class="viewer">
+
+      <div class="viewer-tabs">
+        <button id="tab2d" class="tab-button active">Vista 2D</button>
+        <button id="tab3d" class="tab-button">Vista 3D</button>
+      </div>
+
+      <div class="viewer-container">
+
+        <div id="panel2d" class="viewer-panel active">
+          <canvas id="canvas2d"></canvas>
+        </div>
+
+        <div id="panel3d" class="viewer-panel">
+          <div id="viewer3d"></div>
+        </div>
+
+      </div>
+      <label>
+        <input id="showRapid" type="checkbox">
+        Mostrar movimientos rápidos en 2D
+      </label>
+      <div id="status" class="status"></div>
+    </section>
+
+  </div>
+
+  <div id="BoxMovements">
+    <div id="MoventsActios">
+      <button id="btnXPlus">◀ X</button>
+      <button id="btnXMinus">X ▶</button>
+      <button id="btnYPlus">▲<br>Y</button>
+      <button id="btnYMinus">Y<br>▼</button>
+      <button id="btnZPlus">▲<br>Z</button>
+      <button id="btnZMinus">Z<br>▼</button>
+    </div>
+    <div id="controlRun">
+      <button id="btnStart">START</button>
+      <button id="btnStop">STOP</button>
+      <button id="btnHome">HOME</button>
+    </div>
+    <div id="PosicionBox">
+
+      <div class="posRow">
+        <div class="posCard">
+          <span id="posX">X: 0</span>
+        </div>
+        <button class="btnReset" id="resetX">0</button>
+      </div>
+
+      <div class="posRow">
+        <div class="posCard">
+          <span id="posY">Y: 0</span>
+        </div>
+        <button class="btnReset" id="resetY">0</button>
+      </div>
+
+      <div class="posRow">
+        <div class="posCard">
+          <span id="posZ">Z: 0</span>
+        </div>
+        <button class="btnReset" id="resetZ">0</button>
+      </div>
+      <button id="btnGoZero">GO TO 0</button>
+    </div>
+    <div id="consoleZone">
+
+      <!-- TABS -->
+      <div id="tabs">
+        <button id="tabConsole" class="activeTab">CONSOLA</button>
+        <button id="tabGcode">GCODE</button>
+      </div>
+
+      <!-- CONSOLA -->
+      <div id="consoleContent" class="tabContent">
+        <div id="consoleLog"></div>
+
+        <div id="consoleInputBox">
+          <input type="text" id="inputComando" placeholder="Comando GCODE...">
+          <button id="btnEnviarCmd">Enviar</button>
+        </div>
+      </div>
+
+      <!-- GCODE -->
+      <div id="gcodeContent" class="tabContent hidden">
+
+        <div id="editorContainer">
+
+
+          <button id="btnClearGcode" title="Limpiar editor">🗑</button>
+
+          <div id="lineNumbers"></div>
+          <textarea id="gcodeEditor"></textarea>
+
+        </div>
+        <div id="gcodeActions">
+          <button id="btnRunGcode">Cargar</button>
+          <button id="btnSimular">Simular</button>
+          <button id="btnSaveGcode">Guardar</button>
+        </div>
+
+
+      </div>
+
+      <div id="resizerRight"></div>
+
+    </div>
+    <!-- PANEL CONFIG -->
+    <div id="configPanel">
+      <div id="configContent">
+        <h3>Configuración</h3>
+        <label>Step (mm)</label><br>
+
+        <input type="number" id="inputStepX" value="10"><br><br>
+        <input type="number" id="inputStepY" value="10"><br><br>
+        <input type="number" id="inputStepZ" value="10"><br><br>
+        <h4>Modo de movimiento</h4>
+        <div id="modoBox">
+          <button id="btnG90">G90</button>
+          <button id="btnG91">G91</button>
+        </div>
+        <button id="btnGuardar">Guardar</button>
+        <button id="btnCerrar">Cerrar</button>
+        <div class="config-row">
+          <label>Ancho área (X)</label>
+          <input id="workAreaX" type="number" value="300" min="1">
+        </div>
+
+        <div class="config-row">
+          <label>Alto área (Y)</label>
+          <input id="workAreaY" type="number" value="200" min="1">
+        </div>
+      </div>
+    </div>
+
+    <!-- Script externo -->
+    <script src="./vendor/three/classic/three.min.js"></script>
+    <script src="./vendor/three/classic/controls/OrbitControls.js"></script>
+    <script src="./GCodeInterpreter.js"></script>
+    <script src="./CanvasRenderer2D.js"></script>
+    <script src="./GCodeViewer3D.js"></script>
+    <script type="module" src="script.js"></script>
+
+
+</body>
+
+</html>

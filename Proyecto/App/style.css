@@ -1,0 +1,672 @@
+body {
+  overflow-x: hidden;
+  font-family: Arial;
+  text-align: center;
+  margin: 0;
+  background-color: #e0e0e0;
+}
+
+/* HEADER */
+header {
+  position: relative;
+  background-color: rgb(129, 129, 129);
+  height: 70px;
+  color: white;
+  z-index: 10;
+}
+
+#estadoLed {
+  position: absolute;
+  top: 25px;
+  left: 173px;
+
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+}
+
+/* estados */
+.led-on {
+  background-color: limegreen;
+  box-shadow: 0 0 10px limegreen;
+}
+
+.led-off {
+  background-color: red;
+  box-shadow: 0 0 5px red;
+}
+
+.led-error {
+  background-color: orange;
+  box-shadow: 0 0 10px orange;
+}
+
+#respuesta {
+  position: absolute;
+  top: 10px;
+  left: 530px;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  width: 60px;
+  position: absolute;
+  background-color: rgb(0, 132, 255);
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px rgb(121, 121, 121);
+  color: azure;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+/* CONNECT */
+#btnConnect {
+  top: 10px;
+  left: 10px;
+  width: 150px;
+}
+
+#btnConnect:hover {
+  top: 13px;
+  left: 13px;
+  box-shadow: none;
+}
+
+/* CONFIG */
+#btnConfig {
+  top: 10px;
+  left: 190px;
+  width: 120px;
+}
+
+#btnConfig:hover {
+  top: 13px;
+  left: 193px;
+  box-shadow: none;
+}
+
+#MoventsActios{
+  top: 60px;
+  left: 20px;
+  position: absolute;
+  height: 200px;
+  width: 360px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* X */
+#btnXPlus {
+  top: 65px;
+  left: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnXPlus:hover {
+  top: 68px;
+  left: 13px;
+  box-shadow: none;
+}
+
+#btnXMinus {
+  top: 65px;
+  left: 140px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnXMinus:hover {
+  top: 68px;
+  left: 143px;
+  box-shadow: none;
+}
+
+/* Y */
+#btnYPlus {
+  top: 5px;
+  left: 75px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnYPlus:hover {
+  top: 8px;
+  left: 78px;
+  box-shadow: none;
+}
+
+#btnYMinus {
+  bottom: 5px;
+  left: 75px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnYMinus:hover {
+  bottom: 2px;
+  left: 78px;
+  box-shadow: none;
+}
+
+/* Z */
+#btnZPlus {
+  top: 5px;
+  right: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnZPlus:hover {
+  top: 8px;
+  right: 7px;
+  box-shadow: none;
+}
+
+#btnZMinus {
+  bottom: 5px;
+  right: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+#btnZMinus:hover {
+  bottom: 2px;
+  right: 8px;
+  box-shadow: none;
+}
+
+/* SIMULADOR */
+#Simulador {
+  position: absolute;
+  top: 70px;
+  left: 814px;
+  /* inicial */
+  width: 712px;
+  /* temporal, JS lo controla */
+  height: calc(100vh - 80px);
+  border: 5px solid red;
+  z-index: 1;
+}
+
+/* CAJA MOVIMIENTOS */
+#BoxMovements {
+  position: relative;
+  height: calc(100vh - 80px);
+  width: 400px;
+  border: 5px solid blue;
+}
+
+/* ========================= */
+/* POSICIÓN   */
+/* ========================= */
+
+#PosicionBox {
+  position: absolute;
+  width: 340px;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* fila de cada eje */
+.posRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* recuadro sin borde */
+.posCard {
+  width: 320px;
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  min-width: 80px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* botón reset */
+.btnReset {
+  position: static;
+  width: 40px;
+  padding: 5px;
+  background-color: rgb(0, 132, 255);
+  border-radius: 6px;
+}
+
+/* colores por eje */
+.posRow:nth-child(1) .posCard {
+  background-color: #e0e0e0;
+}
+
+.posRow:nth-child(2) .posCard {
+  background-color: #e0e0e0;
+}
+
+.posRow:nth-child(3) .posCard {
+  background-color: #e0e0e0;
+}
+
+/* PANEL CONFIG */
+#configPanel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#configContent {
+  background: white;
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#btnGuardar,
+#btnCerrar {
+  position: static;
+  margin: 10px;
+  width: 100px;
+}
+
+/* BOTONES PANEL */
+#configContent button {
+  position: static;
+  width: 100px;
+}
+
+/* G90 G91 */
+#modoBox {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+/* CONSOLA */
+#consoleZone {
+  position: absolute;
+  left: 404px;
+  width: 396px;
+  margin-top: -4.8px;
+  height: calc(100vh - 80px);
+  background: #e0e0e0;
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+/* resizer lado derecho */
+#resizerRight {
+  position: absolute;
+  right: -5px;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+}
+
+#consoleLog {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 13px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+#consoleInputBox {
+  display: flex;
+  border-top: 1px solid gray;
+}
+
+#consoleInputBox input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+  text-align: left;
+  background-color: #e0e0e0;
+
+}
+
+#consoleInputBox button {
+  position: static;
+  width: 80px;
+}
+
+#btnGoZero {
+
+  position: static;
+  width: 330px;
+  height: 40px;
+  margin-top: 10px;
+
+  background-color: rgb(0, 132, 255);
+  font-weight: bold;
+}
+
+#btnGoZero:hover {
+  top: auto;
+  /* evita el efecto hover global */
+  left: 0;
+  box-shadow: none;
+}
+
+/* ========================= */
+/* TABS */
+/* ========================= */
+
+#tabs {
+  display: flex;
+  background: #dcdcdc;
+  /* fondo claro */
+  border-bottom: 1px solid #aaa;
+  z-index: 9;
+}
+
+/* botones tabs */
+#tabs button {
+  position: static;
+  width: auto;
+  padding: 6px 14px;
+  margin: 4px 2px;
+  background: #cfcfcf;
+  color: black;
+  font-size: 13px;
+  border-radius: 6px 6px 0 0;
+  box-shadow: none;
+  /* sin sombra para que no parezcan botones normales */
+  cursor: pointer;
+}
+
+/* tab activo */
+#tabs .activeTab {
+  background: #ffffff;
+  font-weight: bold;
+  border-bottom: 2px solid #00aaff;
+  /* toque visual prolijo */
+}
+
+/* ========================= */
+/* CONTENIDO */
+/* ========================= */
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  /* 🔥 evita que crezca de más */
+}
+
+.hidden {
+  display: none;
+}
+
+/* ========================= */
+/* EDITOR GCODE */
+/* ========================= */
+
+#editorContainer {
+  display: flex;
+  flex: 1;
+  background: black;
+  height: 100%;
+  overflow: hidden;
+  /* 🔥 clave */
+}
+
+#lineNumbers {
+  background: #cfcfcf;
+  color: #000000;
+  padding: 10px 5px;
+  font-family: monospace;
+  font-size: 13px;
+  text-align: right;
+  user-select: none;
+  white-space: pre;
+  line-height: 1.4em;
+  /* 👈 MISMO que textarea */
+  overflow-y: hidden;
+  /* 🔥 CLAVE */
+  height: 100%;
+  /* 🔥 scroll vertical */
+  position: relative;
+}
+
+#gcodeEditor {
+  flex: 1;
+  background: #e0e0e0;
+  color: #000000;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  line-height: 1.4em;
+  overflow-y: auto;
+}
+
+/* BOTONES GCODE */
+#gcodeActions {
+  display: flex;
+  border-top: 1px solid #444;
+  flex-shrink: 0;
+  /* 👈 línea separadora */
+
+}
+
+#gcodeActions button {
+  position: static;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+#gcodeActions button:hover {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+#btnUpload {
+  top: 10px;
+  left: 410px;
+  /* ajustalo si se pisa con algo */
+  width: 160px;
+}
+
+#btnUpload:hover {
+  top: 13px;
+  left: 413px;
+  box-shadow: none;
+}
+
+#fileName {
+  position: absolute;
+  top: 25px;
+  left: 590px;
+  font-size: 12px;
+  color: white;
+  z-index: 20;
+}
+
+#controlRun {
+  position: absolute;
+  top: 300px;
+  background-color: white;
+  left: 20px;
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+  height: 205px;
+  width: 360px;
+  border-radius: 5px;
+}
+
+
+
+/* colores */
+#btnStart {
+  top: 10px;
+  left: 10px;
+  width: 120px;
+  height: 120px;
+  /* cuadrado */
+  background-color: rgb(36, 214, 0);
+  font-weight: bold;
+}
+
+/* espacio para STOP (lo vas a usar después) */
+#btnStop {
+  top: 10px;
+  right: 10px;
+  width: 120px;
+  height: 120px;
+  background-color: rgb(214, 0, 0);
+  font-weight: bold;
+}
+
+/* hover estilo igual al resto */
+#btnStart:hover,
+#btnStop:hover {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+#editorContainer {
+  position: relative; /* 🔥 necesario para posicionar dentro */
+}
+
+/* BOTÓN TACHO */
+#btnClearGcode {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
+  width: 35px;
+  height: 35px;
+
+  font-size: 18px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  z-index: 10;
+}
+
+/* hover */
+#btnClearGcode:hover {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.viewer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #e0e0e0;
+}
+
+.viewer-tabs {
+  display: flex;
+  gap: 8px;
+
+  padding: 10px;
+
+  background: #e0e0e0;
+
+  border-bottom: 1px solid #444;
+}
+
+.tab-button {
+  position: static;
+
+  width: 120px;
+  height: 40px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #3b3b3b;
+  color: white;
+
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: rgb(0, 132, 255);
+}
+
+.viewer-container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  flex: 1;
+}
+
+.viewer-panel {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+}
+
+.viewer-panel.active {
+  display: block;
+}
+
+#canvas2d {
+  width: 100%;
+  height: calc(100% - 10px);
+  display: block;
+  background: #e0e0e0;
+}
+canvas {
+  display: block;
+}
+#btnHome {
+  position: absolute;
+
+  top: 140px; /* debajo de START/STOP */
+  left: 10px;
+
+  width: 330px; /* ocupa el ancho de ambos */
+  height: 50px;
+
+  background-color: rgb(255, 166, 0);
+
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#btnHome:hover {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
